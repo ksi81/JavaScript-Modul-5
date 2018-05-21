@@ -17,6 +17,9 @@
         text - текст поста
         likes - количество лайков поста
         */
+// JavaScript-Modul-5
+
+
 
         function SocialBook (users = [], posts = {}) { 
           this .users = users;
