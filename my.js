@@ -22,10 +22,10 @@
 
 
         function SocialBook (users = [], posts = {}) { 
-          this .users = users;
+          this.users = users;
           this.posts = posts;
-          this.getAllUsers =  users.map(user => user);
-          this.getUserByLogin =(userId)=> users.find(user => {
+          this.getAllUsers = users.map(user => user);
+          this.getUserByLogin =(userId) => users.find(user => {
             if (user.id === userId) {
               return users;
             }
@@ -43,12 +43,12 @@
           })
           );
 
-          this.removeUserById  = (userId)=> users.filter(users => users.id !== userId);
+          this.removeUserById = (userId)=> users.filter(users => users.id !== userId);
 
-          // this.getUsersCount =  users.map(user =>)
+          // this.getUsersCount = users.map(user =>)
 
 
-          this.getUsersCount =  function(users) {
+          this.getUsersCount = function(users) {
             let count = 0; 
             for(var prs in users){ 
               if(users.hasOwnProperty(prs)) count++;
@@ -120,7 +120,7 @@
 
   const myBook = new SocialBook(initialUsers, initialPosts);
 
-  myBook.addPost('-qkpzenjxe', { id: getId(), text: 'написать функцию-конструктор', likes: 200 });
+  myBook.addPost('-qkpzenjxe', {id: getId(), text: 'написать функцию-конструктор', likes: 200});
 
 // Add new User 
 myBook.addUser({ 
