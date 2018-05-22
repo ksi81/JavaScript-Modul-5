@@ -21,60 +21,79 @@
 
 
 
-        function SocialBook (users = [], posts = {}) { 
-          this .users = users;
-          this.posts = posts;
-          this.getAllUsers =  users.map(user => user);
-          this.getUserByLogin =(userId)=> users.find(user => {
-            if (user.id === userId) {
-              return users;
-            }
-          });
+function SocialBook (users = [], posts = {}) { 
+  this.users = users;
+  this.posts = posts;
+  this.getAllUsers = () => users.map(user => user.id);
 
-          this.addUser = (user) => {
-            user.id = getId();
-            user.isActive = false;
-            users.push(user);
-          };
+ //  this.getUserByLogin = (idLogin) => users.find(userIdFromUsers => {
+ //    if (userIdFromUsers.id === idLogin){
+ //     return this.users;
+ //   }
+ //   console.log(`Такого юзера" ${idLogin}" нет `);
+ // });
 
-          this.getUserStatus = users.map(user => ({
-            ...user,
-            isActive: !user.isActive,
-          })
-          );
-
-          this.removeUserById  = (userId)=> users.filter(users => users.id !== userId);
-
-          // this.getUsersCount =  users.map(user =>)
+this.getUserByLogin = function (login) {
+ return this.users.find(user => user.login === login);
+};
 
 
-          this.getUsersCount =  function(users) {
-            let count = 0; 
-            for(var prs in users){ 
-              if(users.hasOwnProperty(prs)) count++;
-            } 
-            return count; 
-          };
+// this.getUserByLogin = function (login) {
+//  return this.users.find(user => user.login === login);
+// };
 
-          this.addPost = (userId, post) => {
-            this.posts[userId].push(post);
-          };
 
-          this.removePosts = (userId, postId) => {
-           this.posts[userId]= this.posts[userId].filter(post => post.id !== postId);
-         };
+  this.getUserStatus = (idLogin) => users.map(userIdFromUsers => {
 
-         this.addPostLike = (userId, postId) => {
-          this.posts[userId] = this.posts[userId].map(post => {
-            if (post.id === postId) {
-              return {
-                ...post,
-                likes: post.likes + 10,
-              };
-            }
-            return post;
-          })
-        };
+    if (userIdFromUsers.id === idLogin){
+
+     return 'active';
+   }
+   
+ });
+ // this.getUserStatus = (idLogin) => users.map(user => ({
+ //            ...user,
+ //            isActive: !user.isActive,
+ //          })
+ //          );
+
+
+
+
+
+ this.addUser = (user) => {
+    user.id = getId();
+    user.isActive = false;
+    this.users.push(user);
+    console.log('addUser - добавляет пользователя в свойство users самого экземпляра',this.users);
+  };
+
+ this.removeUserById = (userId) => this.users.filter(userFromUsers => userFromUsers.id !== userId);
+
+
+
+          this.getUsersCount = () => this.users.length;
+     
+
+        //   this.addPost = (userId, post) => {
+        //     this.posts[userId].push(post);
+        //   };
+
+        //   this.removePosts = (userId, postId) => {
+        //    this.posts[userId]= this.posts[userId].filter(post => post.id !== postId);
+        //  };
+
+        //  this.addPostLike = (userId, postId) => {
+        //   this.posts[userId] = this.posts[userId].map(post => {
+        //     if (post.id === postId) {
+        //       return {
+        //         ...post,
+        //         likes: post.likes + 10,
+        //       };
+        //     }
+        //     return post;
+        //   })
+        // };
 
 
       };
@@ -117,10 +136,26 @@
   */
   const getId = () => "-" + Math.random().toString(36).substr(2, 9);
   const getPassord = () => "!!!" + Math.random().toString(36).substr(2, 9);
-
   const myBook = new SocialBook(initialUsers, initialPosts);
 
-  myBook.addPost('-qkpzenjxe', { id: getId(), text: 'написать функцию-конструктор', likes: 200 });
+
+// console.log(myBook.getUserById("-qkpzenjxe"));
+
+
+
+console.log('getAllUsers - возвращает массив всех пользователей',myBook.getAllUsers());
+console.log('getUserByLogin - объект пользователя с совпадающим логином',myBook.getUserByLogin('-s19a6hqce'));
+console.log('getUserStatus -ищет пользователя по id и возвращает active если isActive true',myBook.getUserStatus('-s19a6hqce'));
+console.log('removeUserById - Удаление пользователе "-qkpzenjxe"',myBook.removeUserById('-s19a6hqce'));
+
+ 
+console.log(myBook.getUsersCount());
+
+
+console.log(myBook);
+ // console.log(myBook.addPost('-qkpzenjxe', { id: getId(), text: 'написать функцию-конструктор', likes: 200 }));
+
+
 
 // Add new User 
 myBook.addUser({ 
@@ -128,22 +163,17 @@ myBook.addUser({
   password: getPassord()
 });
 
-// Add new User-2
-myBook.addUser({ 
-  email: '22@email.com',  
-  password: getPassord()
-});
+// // Add new User-2
+// myBook.addUser({ 
+//   email: '22@email.com',  
+//   password: getPassord()
+// });
 
-myBook.removePosts('-s19a6hqce', '-5sgljaskg');
-myBook.getUserByLogin('-s19a6hqce');
-myBook.addPostLike('-s19a6hqce', '-199hb6igr');
-console.log(myBook);
-myBook.addPostLike('-s19a6hqce',);
-
-myBook.getUsersCount('', );
+// myBook.removePosts('-s19a6hqce', '-5sgljaskg');
+// myBook.addPostLike('-s19a6hqce', '-199hb6igr');
+// myBook.addPostLike('-s19a6hqce',);
 
 
-console.log('Удаление пользователе "-qkpzenjxe"',myBook.removeUserById('-qkpzenjxe'));
 
 
 
@@ -183,3 +213,25 @@ console.log('Удаление пользователе "-qkpzenjxe"',myBook.remo
 
 
 // console.log (count(initialUsers));
+
+
+const users2 = [
+  { name: "Mango", isActive: true },
+  { name: "Poly", isActive: false },
+  { name: "Ajax", isActive: true },
+  { name: "Chelsey", isActive: false }
+];
+
+// Для каждого элемента коллекции (user) проверим
+// поле isActive. Если оно true, то
+// текущий элемент (user) будет записан
+// в результирующий массив.
+const activeUsers = users2.filter(user => user.isActive);
+console.log(activeUsers);
+
+// Для каждого элемента коллекции (user) проверим
+// поле isActive. Если оно false, то
+// текущий элемент (user) будет записан
+// в результирующий массив.
+const inactiveUsers = users2.filter(user => !user.isActive);
+console.log(inactiveUsers);
