@@ -21,167 +21,149 @@
 
 
 
-<<<<<<< HEAD
-function SocialBook (users = [], posts = {}) { 
+function SocialBook(users = [], posts = {}) {
   this.users = users;
   this.posts = posts;
   this.getAllUsers = () => users.map(user => user.id);
 
- //  this.getUserByLogin = (idLogin) => users.find(userIdFromUsers => {
- //    if (userIdFromUsers.id === idLogin){
- //     return this.users;
- //   }
- //   console.log(`Такого юзера" ${idLogin}" нет `);
- // });
+  //  this.getUserByLogin = (idLogin) => users.find(userIdFromUsers => {
+  //    if (userIdFromUsers.id === idLogin){
+  //     return this.users;
+  //   }
+  //   console.log(`Такого юзера" ${idLogin}" нет `);
+  // });
 
-this.getUserByLogin = function (login) {
- return this.users.find(user => user.login === login);
-};
+  this.getUserByLogin = function (login) {
+    return this.users.find(user => user.login === login);
+  };
 
 
-// this.getUserByLogin = function (login) {
-//  return this.users.find(user => user.login === login);
-// };
+  // this.getUserByLogin = function (login) {
+  //  return this.users.find(user => user.login === login);
+  // };
 
 
   this.getUserStatus = (idLogin) => users.map(userIdFromUsers => {
 
-    if (userIdFromUsers.id === idLogin){
+    if (userIdFromUsers.id === idLogin) {
 
-     return 'active';
-   }
-   
- });
- // this.getUserStatus = (idLogin) => users.map(user => ({
- //            ...user,
- //            isActive: !user.isActive,
- //          })
- //          );
+      return 'active';
+    }
 
-
+  });
+  // this.getUserStatus = (idLogin) => users.map(user => ({
+  //            ...user,
+  //            isActive: !user.isActive,
+  //          })
+  //          );
 
 
 
- this.addUser = (user) => {
+
+
+  this.addUser = (user) => {
     user.id = getId();
     user.isActive = false;
     this.users.push(user);
-    console.log('addUser - добавляет пользователя в свойство users самого экземпляра',this.users);
+    console.log('addUser - добавляет пользователя в свойство users самого экземпляра', this.users);
   };
 
- this.removeUserById = (userId) => this.users.filter(userFromUsers => userFromUsers.id !== userId);
+  this.removeUserById = (userId) => this.users.filter(userFromUsers => userFromUsers.id !== userId);
 
 
 
-          this.getUsersCount = () => this.users.length;
-     
-
-        //   this.addPost = (userId, post) => {
-        //     this.posts[userId].push(post);
-        //   };
-
-        //   this.removePosts = (userId, postId) => {
-        //    this.posts[userId]= this.posts[userId].filter(post => post.id !== postId);
-        //  };
-
-        //  this.addPostLike = (userId, postId) => {
-        //   this.posts[userId] = this.posts[userId].map(post => {
-        //     if (post.id === postId) {
-        //       return {
-        //         ...post,
-        //         likes: post.likes + 10,
-        //       };
-        //     }
-        //     return post;
-        //   })
-        // };
-=======
-        function SocialBook (users = [], posts = {}) { 
-          this.users = users;
-          this.posts = posts;
-          this.getAllUsers = users.map(user => user);
-          this.getUserByLogin =(userId) => users.find(user => {
-            if (user.id === userId) {
-              return users;
-            }
-          });
-
-          this.addUser = (user) => {
-            user.id = getId();
-            user.isActive = false;
-            users.push(user);
-          };
-
-          this.getUserStatus = users.map(user => ({
-            ...user,
-            isActive: !user.isActive,
-          })
-          );
-
-          this.removeUserById = (userId)=> users.filter(users => users.id !== userId);
-
-          // this.getUsersCount = users.map(user =>)
+  this.getUsersCount = () => this.users.length;
 
 
-          this.getUsersCount = function(users) {
-            let count = 0; 
-            for(var prs in users){ 
-              if(users.hasOwnProperty(prs)) count++;
-            } 
-            return count; 
-          };
+  //   this.addPost = (userId, post) => {
+  //     this.posts[userId].push(post);
+  //   };
 
-          this.addPost = (userId, post) => {
-            this.posts[userId].push(post);
-          };
+  //   this.removePosts = (userId, postId) => {
+  //    this.posts[userId]= this.posts[userId].filter(post => post.id !== postId);
+  //  };
 
-          this.removePosts = (userId, postId) => {
-           this.posts[userId]= this.posts[userId].filter(post => post.id !== postId);
-         };
-
-         this.addPostLike = (userId, postId) => {
-          this.posts[userId] = this.posts[userId].map(post => {
-            if (post.id === postId) {
-              return {
-                ...post,
-                likes: post.likes + 10,
-              };
-            }
-            return post;
-          })
-        };
->>>>>>> e7d27b0e374541439da69d36f4ac79454a20aa24
+  //  this.addPostLike = (userId, postId) => {
+  //   this.posts[userId] = this.posts[userId].map(post => {
+  //     if (post.id === postId) {
+  //       return {
+  //         ...post,
+  //         likes: post.likes + 10,
+  //       };
+  //     }
+  //     return post;
+  //   })
+  // };
 
 
-      };
+};
 
 /*
   Используйте следующий массив пользователей при создании экземпляра SocialBook
   */
-  const initialUsers = [
-  { id: "-s19a6hqce", login: "mangozedog@mail.com", password: "qwe123zv", isActive: true },
-  { id: "-qkpzenjxe", login: "polysweet@skynet.ze", password: "123zxc78", isActive: true },
-  { id: "-e51cpd4di", login: "ajax2k@change.ua", password: "ert234qw", isActive: false }
-  ];
+const initialUsers = [{
+    id: "-s19a6hqce",
+    login: "mangozedog@mail.com",
+    password: "qwe123zv",
+    isActive: true
+  },
+  {
+    id: "-qkpzenjxe",
+    login: "polysweet@skynet.ze",
+    password: "123zxc78",
+    isActive: true
+  },
+  {
+    id: "-e51cpd4di",
+    login: "ajax2k@change.ua",
+    password: "ert234qw",
+    isActive: false
+  }
+];
 
 /*
   Используйте следующий объект постов пользователей при создании экземпляра SocialBook
   */
-  const initialPosts = {
-    "-s19a6hqce": [
-    { id: "-5sgljaskg", text: "post #1", likes: 3 },
-    { id: "-199hb6igr", text: "post #2", likes: 5 },
-    { id: "-hy0eyw5qo", text: "post #3", likes: 13 }
-    ],
-    "-qkpzenjxe": [
-    { id: "-5tu69g5rf", text: "post #1", likes: 8 },
-    { id: "-bje766393", text: "post #2", likes: 15 }
-    ],
-    "-e51cpd4di": [
-    { id: "-9y6nkmlj4", text: "post #1", likes: 18 },
-    { id: "-i03pbhy3s", text: "post #2", likes: 45 }
-    ],
-  };
+const initialPosts = {
+  "-s19a6hqce": [{
+      id: "-5sgljaskg",
+      text: "post #1",
+      likes: 3
+    },
+    {
+      id: "-199hb6igr",
+      text: "post #2",
+      likes: 5
+    },
+    {
+      id: "-hy0eyw5qo",
+      text: "post #3",
+      likes: 13
+    }
+  ],
+  "-qkpzenjxe": [{
+      id: "-5tu69g5rf",
+      text: "post #1",
+      likes: 8
+    },
+    {
+      id: "-bje766393",
+      text: "post #2",
+      likes: 15
+    }
+  ],
+  "-e51cpd4di": [{
+      id: "-9y6nkmlj4",
+      text: "post #1",
+      likes: 18
+    },
+    {
+      id: "-i03pbhy3s",
+      text: "post #2",
+      likes: 45
+    }
+  ],
+};
 
 
 
@@ -191,36 +173,32 @@ this.getUserByLogin = function (login) {
   
   К примеру: const user = { id: getId(), name: 'Mango' };
   */
-  const getId = () => "-" + Math.random().toString(36).substr(2, 9);
-  const getPassord = () => "!!!" + Math.random().toString(36).substr(2, 9);
-  const myBook = new SocialBook(initialUsers, initialPosts);
+const getId = () => "-" + Math.random().toString(36).substr(2, 9);
+const getPassord = () => "!!!" + Math.random().toString(36).substr(2, 9);
+const myBook = new SocialBook(initialUsers, initialPosts);
 
-<<<<<<< HEAD
 
 // console.log(myBook.getUserById("-qkpzenjxe"));
 
 
 
-console.log('getAllUsers - возвращает массив всех пользователей',myBook.getAllUsers());
-console.log('getUserByLogin - объект пользователя с совпадающим логином',myBook.getUserByLogin('-s19a6hqce'));
-console.log('getUserStatus -ищет пользователя по id и возвращает active если isActive true',myBook.getUserStatus('-s19a6hqce'));
-console.log('removeUserById - Удаление пользователе "-qkpzenjxe"',myBook.removeUserById('-s19a6hqce'));
+console.log('getAllUsers - возвращает массив всех пользователей', myBook.getAllUsers());
+console.log('getUserByLogin - объект пользователя с совпадающим логином', myBook.getUserByLogin('-s19a6hqce'));
+console.log('getUserStatus -ищет пользователя по id и возвращает active если isActive true', myBook.getUserStatus('-s19a6hqce'));
+console.log('removeUserById - Удаление пользователе "-qkpzenjxe"', myBook.removeUserById('-s19a6hqce'));
 
- 
+
 console.log(myBook.getUsersCount());
 
 
 console.log(myBook);
- // console.log(myBook.addPost('-qkpzenjxe', { id: getId(), text: 'написать функцию-конструктор', likes: 200 }));
+// console.log(myBook.addPost('-qkpzenjxe', { id: getId(), text: 'написать функцию-конструктор', likes: 200 }));
 
 
-=======
-  myBook.addPost('-qkpzenjxe', {id: getId(), text: 'написать функцию-конструктор', likes: 200});
->>>>>>> e7d27b0e374541439da69d36f4ac79454a20aa24
 
 // Add new User 
-myBook.addUser({ 
-  email: 'test-1@email.com',  
+myBook.addUser({
+  email: 'test-1@email.com',
   password: getPassord()
 });
 
@@ -238,30 +216,30 @@ myBook.addUser({
 
 
 
-  // Добавьте в SocialBook следующие методы для работы с пользователями:
-  //   - getAllUsers() - возвращает массив всех пользователей +++++
+// Добавьте в SocialBook следующие методы для работы с пользователями:
+//   - getAllUsers() - возвращает массив всех пользователей +++++
 
-    // - getUserByLogin(login) - ищет и возвращает объект пользователя с совпадающим логином++++
-    
-    // - `getUserStatus`(userId) - ищет пользователя по id и возвращает 'active' 
-    //   если isActive true, в противном случае возвращает 'inactive'.+++
+// - getUserByLogin(login) - ищет и возвращает объект пользователя с совпадающим логином++++
 
-    // - addUser(user) - принимает объект user с полями email и password и добавляет 
-    //   ему поля id(используя функцию getId) и isActive (false). Затем добавляет пользователя в 
-    //   свойство users самого экземпляра. ++++
+// - `getUserStatus`(userId) - ищет пользователя по id и возвращает 'active' 
+//   если isActive true, в противном случае возвращает 'inactive'.+++
 
-    // - removeUserById(userId) - удаляет пользователя из массива пользователей по полю id
-    
-    // - getUsersCount() - возвращает общее количество пользователей
+// - addUser(user) - принимает объект user с полями email и password и добавляет 
+//   ему поля id(используя функцию getId) и isActive (false). Затем добавляет пользователя в 
+//   свойство users самого экземпляра. ++++
+
+// - removeUserById(userId) - удаляет пользователя из массива пользователей по полю id
+
+// - getUsersCount() - возвращает общее количество пользователей
 
 
 
 
 //Test for delete user
-    // const filtered = initialUsers.filter(initialUsers => initialUsers.id !== '-s19a6hqce');
+// const filtered = initialUsers.filter(initialUsers => initialUsers.id !== '-s19a6hqce');
 
-    // console.log(filtered);
-    
+// console.log(filtered);
+
 
 // const getActiveUsersPostsCountWithReduce = initialUsers =>
 //   initialUsers.reduce((acc, user) => (user.isActive ? acc + user.id : acc), 0);
@@ -274,14 +252,24 @@ myBook.addUser({
 
 
 // console.log (count(initialUsers));
-<<<<<<< HEAD
 
 
-const users2 = [
-  { name: "Mango", isActive: true },
-  { name: "Poly", isActive: false },
-  { name: "Ajax", isActive: true },
-  { name: "Chelsey", isActive: false }
+const users2 = [{
+    name: "Mango",
+    isActive: true
+  },
+  {
+    name: "Poly",
+    isActive: false
+  },
+  {
+    name: "Ajax",
+    isActive: true
+  },
+  {
+    name: "Chelsey",
+    isActive: false
+  }
 ];
 
 // Для каждого элемента коллекции (user) проверим
@@ -297,5 +285,3 @@ console.log(activeUsers);
 // в результирующий массив.
 const inactiveUsers = users2.filter(user => !user.isActive);
 console.log(inactiveUsers);
-=======
->>>>>>> e7d27b0e374541439da69d36f4ac79454a20aa24
