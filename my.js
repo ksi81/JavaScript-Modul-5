@@ -21,6 +21,7 @@
 
 
 
+<<<<<<< HEAD
 function SocialBook (users = [], posts = {}) { 
   this.users = users;
   this.posts = posts;
@@ -94,6 +95,62 @@ this.getUserByLogin = function (login) {
         //     return post;
         //   })
         // };
+=======
+        function SocialBook (users = [], posts = {}) { 
+          this.users = users;
+          this.posts = posts;
+          this.getAllUsers = users.map(user => user);
+          this.getUserByLogin =(userId) => users.find(user => {
+            if (user.id === userId) {
+              return users;
+            }
+          });
+
+          this.addUser = (user) => {
+            user.id = getId();
+            user.isActive = false;
+            users.push(user);
+          };
+
+          this.getUserStatus = users.map(user => ({
+            ...user,
+            isActive: !user.isActive,
+          })
+          );
+
+          this.removeUserById = (userId)=> users.filter(users => users.id !== userId);
+
+          // this.getUsersCount = users.map(user =>)
+
+
+          this.getUsersCount = function(users) {
+            let count = 0; 
+            for(var prs in users){ 
+              if(users.hasOwnProperty(prs)) count++;
+            } 
+            return count; 
+          };
+
+          this.addPost = (userId, post) => {
+            this.posts[userId].push(post);
+          };
+
+          this.removePosts = (userId, postId) => {
+           this.posts[userId]= this.posts[userId].filter(post => post.id !== postId);
+         };
+
+         this.addPostLike = (userId, postId) => {
+          this.posts[userId] = this.posts[userId].map(post => {
+            if (post.id === postId) {
+              return {
+                ...post,
+                likes: post.likes + 10,
+              };
+            }
+            return post;
+          })
+        };
+>>>>>>> e7d27b0e374541439da69d36f4ac79454a20aa24
 
 
       };
@@ -138,6 +195,7 @@ this.getUserByLogin = function (login) {
   const getPassord = () => "!!!" + Math.random().toString(36).substr(2, 9);
   const myBook = new SocialBook(initialUsers, initialPosts);
 
+<<<<<<< HEAD
 
 // console.log(myBook.getUserById("-qkpzenjxe"));
 
@@ -156,6 +214,9 @@ console.log(myBook);
  // console.log(myBook.addPost('-qkpzenjxe', { id: getId(), text: 'написать функцию-конструктор', likes: 200 }));
 
 
+=======
+  myBook.addPost('-qkpzenjxe', {id: getId(), text: 'написать функцию-конструктор', likes: 200});
+>>>>>>> e7d27b0e374541439da69d36f4ac79454a20aa24
 
 // Add new User 
 myBook.addUser({ 
@@ -213,6 +274,7 @@ myBook.addUser({
 
 
 // console.log (count(initialUsers));
+<<<<<<< HEAD
 
 
 const users2 = [
@@ -235,3 +297,5 @@ console.log(activeUsers);
 // в результирующий массив.
 const inactiveUsers = users2.filter(user => !user.isActive);
 console.log(inactiveUsers);
+=======
+>>>>>>> e7d27b0e374541439da69d36f4ac79454a20aa24
