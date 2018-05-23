@@ -27,8 +27,9 @@ function SocialBook(users = [], posts = {}) {
   this.getAllUsers = () => users.map(user => user.id);
 
   this.getUserByLogin = function (login) {
-   return this.users.find(user => user.login === login);
-
+  const testObject = this.users.find(user => user.login === login);
+      if (testObject) {return testObject} else {return `Юзера с таким ${login} нет в базе`}
+// return TestObject;
 
 // не знаю как сделать преобразование - выдает ошибку TypeError: Cannot convert undefined or null to object
 
@@ -160,7 +161,7 @@ function SocialBook(users = [], posts = {}) {
 
 
 console.log('getAllUsers - возвращает массив всех пользователей', myBook.getAllUsers());
-console.log('getUserByLogin - объект пользователя с совпадающим логином', myBook.getUserByLogin('ajax2k@change.ua'));
+console.log('getUserByLogin - объект пользователя с совпадающим логином', myBook.getUserByLogin('jax2k@change.ua'));
 console.log('getUserStatus -ищет пользователя по id и возвращает active если isActive true', myBook.getUserStatus('-s19a6hqce'));
 console.log('removeUserById - Удаление пользователе "-qkpzenjxe"', myBook.removeUserById('-s19a6hqce'));
 
