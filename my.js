@@ -26,40 +26,31 @@ function SocialBook(users = [], posts = {}) {
   this.posts = posts;
   this.getAllUsers = () => users.map(user => user.id);
 
-  //  this.getUserByLogin = (idLogin) => users.find(userIdFromUsers => {
-  //    if (userIdFromUsers.id === idLogin){
-  //     return this.users;
-  //   }
-  //   console.log(`Такого юзера" ${idLogin}" нет `);
-  // });
-
   this.getUserByLogin = function (login) {
-    return this.users.find(user => user.login === login);
+   return this.users.find(user => user.login === login);
+
+
+// не знаю как сделать преобразование - выдает ошибку TypeError: Cannot convert undefined or null to object
+
+
+  //  TestObject = this.users.find(user => user.login === login);
+  //   if( Object.keys( TestObject ).length > 0 )
+  //   {
+  //    return this.users.find(user => user.login === login);
+  //  } else 
+  //  {
+  //   return "Объект TestObject не имеет свойств";
+  // }
+  
   };
 
+  this.getUserStatus = (id) => users.map(userIdFromUsers => {
 
-  // this.getUserByLogin = function (login) {
-  //  return this.users.find(user => user.login === login);
-  // };
-
-
-  this.getUserStatus = (idLogin) => users.map(userIdFromUsers => {
-
-    if (userIdFromUsers.id === idLogin) {
-
+    if (userIdFromUsers.id === id) {
       return 'active';
     }
-
+    return 'inactive';
   });
-  // this.getUserStatus = (idLogin) => users.map(user => ({
-  //            ...user,
-  //            isActive: !user.isActive,
-  //          })
-  //          );
-
-
-
-
 
   this.addUser = (user) => {
     user.id = getId();
@@ -70,38 +61,15 @@ function SocialBook(users = [], posts = {}) {
 
   this.removeUserById = (userId) => this.users.filter(userFromUsers => userFromUsers.id !== userId);
 
-
-
-  this.getUsersCount = () => this.users.length;
-
-
-  //   this.addPost = (userId, post) => {
-  //     this.posts[userId].push(post);
-  //   };
-
-  //   this.removePosts = (userId, postId) => {
-  //    this.posts[userId]= this.posts[userId].filter(post => post.id !== postId);
-  //  };
-
-  //  this.addPostLike = (userId, postId) => {
-  //   this.posts[userId] = this.posts[userId].map(post => {
-  //     if (post.id === postId) {
-  //       return {
-  //         ...post,
-  //         likes: post.likes + 10,
-  //       };
-  //     }
-  //     return post;
-  //   })
-  // };
-
-
+  this.getUsersCount = function () {
+    return this.users.length;
+  };
 };
 
 /*
   Используйте следующий массив пользователей при создании экземпляра SocialBook
   */
-const initialUsers = [{
+  const initialUsers = [{
     id: "-s19a6hqce",
     login: "mangozedog@mail.com",
     password: "qwe123zv",
@@ -119,13 +87,13 @@ const initialUsers = [{
     password: "ert234qw",
     isActive: false
   }
-];
+  ];
 
 /*
   Используйте следующий объект постов пользователей при создании экземпляра SocialBook
   */
-const initialPosts = {
-  "-s19a6hqce": [{
+  const initialPosts = {
+    "-s19a6hqce": [{
       id: "-5sgljaskg",
       text: "post #1",
       likes: 3
@@ -140,8 +108,8 @@ const initialPosts = {
       text: "post #3",
       likes: 13
     }
-  ],
-  "-qkpzenjxe": [{
+    ],
+    "-qkpzenjxe": [{
       id: "-5tu69g5rf",
       text: "post #1",
       likes: 8
@@ -151,8 +119,8 @@ const initialPosts = {
       text: "post #2",
       likes: 15
     }
-  ],
-  "-e51cpd4di": [{
+    ],
+    "-e51cpd4di": [{
       id: "-9y6nkmlj4",
       text: "post #1",
       likes: 18
@@ -162,8 +130,8 @@ const initialPosts = {
       text: "post #2",
       likes: 45
     }
-  ],
-};
+    ],
+  };
 
 
 
@@ -173,9 +141,9 @@ const initialPosts = {
   
   К примеру: const user = { id: getId(), name: 'Mango' };
   */
-const getId = () => "-" + Math.random().toString(36).substr(2, 9);
-const getPassord = () => "!!!" + Math.random().toString(36).substr(2, 9);
-const myBook = new SocialBook(initialUsers, initialPosts);
+  const getId = () => "-" + Math.random().toString(36).substr(2, 9);
+  const getPassord = () => "!!!" + Math.random().toString(36).substr(2, 9);
+  const myBook = new SocialBook(initialUsers, initialPosts);
 
 
 // console.log(myBook.getUserById("-qkpzenjxe"));
@@ -183,7 +151,7 @@ const myBook = new SocialBook(initialUsers, initialPosts);
 
 
 console.log('getAllUsers - возвращает массив всех пользователей', myBook.getAllUsers());
-console.log('getUserByLogin - объект пользователя с совпадающим логином', myBook.getUserByLogin('-s19a6hqce'));
+console.log('getUserByLogin - объект пользователя с совпадающим логином', myBook.getUserByLogin('ajax2k@change.ua'));
 console.log('getUserStatus -ищет пользователя по id и возвращает active если isActive true', myBook.getUserStatus('-s19a6hqce'));
 console.log('removeUserById - Удаление пользователе "-qkpzenjxe"', myBook.removeUserById('-s19a6hqce'));
 
@@ -202,19 +170,6 @@ myBook.addUser({
   password: getPassord()
 });
 
-// // Add new User-2
-// myBook.addUser({ 
-//   email: '22@email.com',  
-//   password: getPassord()
-// });
-
-// myBook.removePosts('-s19a6hqce', '-5sgljaskg');
-// myBook.addPostLike('-s19a6hqce', '-199hb6igr');
-// myBook.addPostLike('-s19a6hqce',);
-
-
-
-
 
 // Добавьте в SocialBook следующие методы для работы с пользователями:
 //   - getAllUsers() - возвращает массив всех пользователей +++++
@@ -232,6 +187,20 @@ myBook.addUser({
 
 // - getUsersCount() - возвращает общее количество пользователей
 
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// // Add new User-2
+// myBook.addUser({ 
+//   email: '22@email.com',  
+//   password: getPassord()
+// });
+
+// myBook.removePosts('-s19a6hqce', '-5sgljaskg');
+// myBook.addPostLike('-s19a6hqce', '-199hb6igr');
+// myBook.addPostLike('-s19a6hqce',);
 
 
 
@@ -254,34 +223,23 @@ myBook.addUser({
 // console.log (count(initialUsers));
 
 
-const users2 = [{
-    name: "Mango",
-    isActive: true
-  },
-  {
-    name: "Poly",
-    isActive: false
-  },
-  {
-    name: "Ajax",
-    isActive: true
-  },
-  {
-    name: "Chelsey",
-    isActive: false
-  }
-];
 
-// Для каждого элемента коллекции (user) проверим
-// поле isActive. Если оно true, то
-// текущий элемент (user) будет записан
-// в результирующий массив.
-const activeUsers = users2.filter(user => user.isActive);
-console.log(activeUsers);
+  //   this.addPost = (userId, post) => {
+  //     this.posts[userId].push(post);
+  //   };
 
-// Для каждого элемента коллекции (user) проверим
-// поле isActive. Если оно false, то
-// текущий элемент (user) будет записан
-// в результирующий массив.
-const inactiveUsers = users2.filter(user => !user.isActive);
-console.log(inactiveUsers);
+  //   this.removePosts = (userId, postId) => {
+  //    this.posts[userId]= this.posts[userId].filter(post => post.id !== postId);
+  //  };
+
+  //  this.addPostLike = (userId, postId) => {
+  //   this.posts[userId] = this.posts[userId].map(post => {
+  //     if (post.id === postId) {
+  //       return {
+  //         ...post,
+  //         likes: post.likes + 10,
+  //       };
+  //     }
+  //     return post;
+  //   })
+  // };
