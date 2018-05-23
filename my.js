@@ -64,6 +64,15 @@ function SocialBook(users = [], posts = {}) {
   this.getUsersCount = function () {
     return this.users.length;
   };
+
+
+
+
+//////Дополнительное задание: 
+    this.removePosts = (userId, postId) => {
+     return this.posts[userId]= this.posts[userId].filter(post => post.id !== postId);
+   };
+
 };
 
 /*
@@ -159,6 +168,9 @@ console.log('removeUserById - Удаление пользователе "-qkpzen
 console.log(myBook.getUsersCount());
 
 
+myBook.removePosts('-s19a6hqce', '-5sgljaskg');
+
+
 console.log(myBook);
 // console.log(myBook.addPost('-qkpzenjxe', { id: getId(), text: 'написать функцию-конструктор', likes: 200 }));
 
@@ -198,7 +210,7 @@ myBook.addUser({
 //   password: getPassord()
 // });
 
-// myBook.removePosts('-s19a6hqce', '-5sgljaskg');
+
 // myBook.addPostLike('-s19a6hqce', '-199hb6igr');
 // myBook.addPostLike('-s19a6hqce',);
 
@@ -228,9 +240,7 @@ myBook.addUser({
   //     this.posts[userId].push(post);
   //   };
 
-  //   this.removePosts = (userId, postId) => {
-  //    this.posts[userId]= this.posts[userId].filter(post => post.id !== postId);
-  //  };
+
 
   //  this.addPostLike = (userId, postId) => {
   //   this.posts[userId] = this.posts[userId].map(post => {
