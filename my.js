@@ -22,126 +22,114 @@
 
 
 function SocialBook(users = [], posts = {}) {
-  this.users = users;
-  this.posts = posts;
-  this.getAllUsers = () => users.map(user => user.id);
+    this.users = users;
+    this.posts = posts;
+    
+    this.getAllUsers = () => users.map(user => user);
 
-  this.getUserByLogin = function (login) {
-  const testObject = this.users.find(user => user.login === login);
-      if (testObject) {return testObject} else {return `Юзера с таким ${login} нет в базе`}
-// return TestObject;
+    this.getUserByLogin = function(login) {
+        const testObject = this.users.find(user => user.login === login);
+        if (testObject) { return testObject } else { return `Юзера с таким ${login} нет в базе` }
+    };
 
-// не знаю как сделать преобразование - выдает ошибку TypeError: Cannot convert undefined or null to object
+    this.getUserStatus = function(userId) {
+        const testObject = this.users.find(user => user.id === userId);
+        if (testObject) {
+            const getUserById = this.users.find(user => user.id === userId);
+            return getUserById.isActive ? 'active' : 'inactive';
+        } else { return `Юзера с таким userId ${userId} нет в базе` }
+    };
 
+    this.addUser = (user) => {
+        user.id = getId();
+        user.isActive = false;
+        this.users.push(user);
+        console.log('addUser - добавляет пользователя в свойство users самого экземпляра', this.users);
+    };
 
-  //  TestObject = this.users.find(user => user.login === login);
-  //   if( Object.keys( TestObject ).length > 0 )
-  //   {
-  //    return this.users.find(user => user.login === login);
-  //  } else 
-  //  {
-  //   return "Объект TestObject не имеет свойств";
-  // }
-  
-  };
+    this.removeUserById = function(userId) {
+      otherUser = this.users.filter(userFromUsers => userFromUsers.id !== userId);
+       users = otherUser;
+       return users;
+    };
 
-  this.getUserStatus = (id) => users.map(userIdFromUsers => {
+    this.getUsersCount = function() {
+        return this.users.length;
+    };
 
-    if (userIdFromUsers.id === id) {
-      return 'active';
-    }
-    return 'inactive';
-  });
-
-  this.addUser = (user) => {
-    user.id = getId();
-    user.isActive = false;
-    this.users.push(user);
-    console.log('addUser - добавляет пользователя в свойство users самого экземпляра', this.users);
-  };
-
-  this.removeUserById = (userId) => this.users.filter(userFromUsers => userFromUsers.id !== userId);
-
-  this.getUsersCount = function () {
-    return this.users.length;
-  };
-
-
-
-
-//////Дополнительное задание: 
+    //////Дополнительное задание: 
     this.removePosts = (userId, postId) => {
-     return this.posts[userId]= this.posts[userId].filter(post => post.id !== postId);
-   };
+        return this.posts[userId] = this.posts[userId].filter(post => post.id !== postId);
+    };
 
 };
 
 /*
   Используйте следующий массив пользователей при создании экземпляра SocialBook
   */
-  const initialUsers = [{
-    id: "-s19a6hqce",
-    login: "mangozedog@mail.com",
-    password: "qwe123zv",
-    isActive: true
-  },
-  {
-    id: "-qkpzenjxe",
-    login: "polysweet@skynet.ze",
-    password: "123zxc78",
-    isActive: true
-  },
-  {
-    id: "-e51cpd4di",
-    login: "ajax2k@change.ua",
-    password: "ert234qw",
-    isActive: false
-  }
-  ];
+const initialUsers = [{
+        id: "-s19a6hqce",
+        login: "mangozedog@mail.com",
+        password: "qwe123zv",
+        isActive: true
+    },
+    {
+        id: "-qkpzenjxe",
+        login: "polysweet@skynet.ze",
+        password: "123zxc78",
+        isActive: true
+    },
+    {
+        id: "-e51cpd4di",
+        login: "ajax2k@change.ua",
+        password: "ert234qw",
+        isActive: false
+    }
+];
 
 /*
   Используйте следующий объект постов пользователей при создании экземпляра SocialBook
   */
-  const initialPosts = {
+const initialPosts = {
     "-s19a6hqce": [{
-      id: "-5sgljaskg",
-      text: "post #1",
-      likes: 3
-    },
-    {
-      id: "-199hb6igr",
-      text: "post #2",
-      likes: 5
-    },
-    {
-      id: "-hy0eyw5qo",
-      text: "post #3",
-      likes: 13
-    }
+            id: "-5sgljaskg",
+            text: "post #1",
+            likes: 3
+        },
+        {
+            id: "-199hb6igr",
+            text: "post #2",
+            likes: 5
+        },
+        {
+            id: "-hy0eyw5qo",
+            text: "post #3",
+            likes: 13
+        }
     ],
     "-qkpzenjxe": [{
-      id: "-5tu69g5rf",
-      text: "post #1",
-      likes: 8
-    },
-    {
-      id: "-bje766393",
-      text: "post #2",
-      likes: 15
-    }
+            id: "-5tu69g5rf",
+            text: "post #1",
+            likes: 8
+        },
+        {
+            id: "-bje766393",
+            text: "post #2",
+            likes: 15
+        }
     ],
     "-e51cpd4di": [{
-      id: "-9y6nkmlj4",
-      text: "post #1",
-      likes: 18
-    },
-    {
-      id: "-i03pbhy3s",
-      text: "post #2",
-      likes: 45
-    }
+            id: "-9y6nkmlj4",
+            text: "post #1",
+            likes: 18
+        },
+        {
+            id: "-i03pbhy3s",
+            text: "post #2",
+            likes: 45
+        }
     ],
-  };
+};
 
 
 
@@ -151,9 +139,9 @@ function SocialBook(users = [], posts = {}) {
   
   К примеру: const user = { id: getId(), name: 'Mango' };
   */
-  const getId = () => "-" + Math.random().toString(36).substr(2, 9);
-  const getPassord = () => "!!!" + Math.random().toString(36).substr(2, 9);
-  const myBook = new SocialBook(initialUsers, initialPosts);
+const getId = () => "-" + Math.random().toString(36).substr(2, 9);
+const getPassord = () => "!!!" + Math.random().toString(36).substr(2, 9);
+const myBook = new SocialBook(initialUsers, initialPosts);
 
 
 // console.log(myBook.getUserById("-qkpzenjxe"));
@@ -161,8 +149,8 @@ function SocialBook(users = [], posts = {}) {
 
 
 console.log('getAllUsers - возвращает массив всех пользователей', myBook.getAllUsers());
-console.log('getUserByLogin - объект пользователя с совпадающим логином', myBook.getUserByLogin('jax2k@change.ua'));
-console.log('getUserStatus -ищет пользователя по id и возвращает active если isActive true', myBook.getUserStatus('-s19a6hqce'));
+console.log('getUserByLogin - объект пользователя с совпадающим логином', myBook.getUserByLogin('ajax2k@change.ua'));
+console.log('getUserStatus -ищет пользователя по id и возвращает active если isActive true - ', myBook.getUserStatus('-s19a6hqce'));
 console.log('removeUserById - Удаление пользователе "-qkpzenjxe"', myBook.removeUserById('-s19a6hqce'));
 
 
@@ -179,8 +167,8 @@ console.log(myBook);
 
 // Add new User 
 myBook.addUser({
-  email: 'test-1@email.com',
-  password: getPassord()
+    email: 'test-1@email.com',
+    password: getPassord()
 });
 
 
@@ -237,20 +225,20 @@ myBook.addUser({
 
 
 
-  //   this.addPost = (userId, post) => {
-  //     this.posts[userId].push(post);
-  //   };
+//   this.addPost = (userId, post) => {
+//     this.posts[userId].push(post);
+//   };
 
 
 
-  //  this.addPostLike = (userId, postId) => {
-  //   this.posts[userId] = this.posts[userId].map(post => {
-  //     if (post.id === postId) {
-  //       return {
-  //         ...post,
-  //         likes: post.likes + 10,
-  //       };
-  //     }
-  //     return post;
-  //   })
-  // };
+//  this.addPostLike = (userId, postId) => {
+//   this.posts[userId] = this.posts[userId].map(post => {
+//     if (post.id === postId) {
+//       return {
+//         ...post,
+//         likes: post.likes + 10,
+//       };
+//     }
+//     return post;
+//   })
+// };
