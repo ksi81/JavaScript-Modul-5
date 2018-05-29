@@ -25,7 +25,7 @@ function SocialBook(users = [], posts = {}) {
     this.users = users;
     this.posts = posts;
     
-    this.getAllUsers = () => users.map(user => user);
+    this.getAllUsers = () => this.users.map(user => user);
 
     this.getUserByLogin = function(login) {
         const testObject = this.users.find(user => user.login === login);
